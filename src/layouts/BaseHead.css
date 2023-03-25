@@ -8,3 +8,7 @@
       #da62c4 30%,
       white 60%);
 }
+
+html {
+	scroll-behavior: smooth;
+}

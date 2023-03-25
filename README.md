@@ -33,6 +33,30 @@ $1000: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YHVN
 - https://www.npmjs.com/package/nodemailer
 - https://nodemailer.com/usage/
 
+## Sign auto-extracted text
+
+```text
+BELIEVE YOU CAN AND YOU ARE HALF WAY THERE
+PAIN IS JUST WEAKNESS LEAVING THE BODY
+FEEL the BURN
+MUSCLES: USE THEM OR LOSE THEM
+TRAIN MEAN - EAT CLEAN - GET LEAN
+DON'T STOP WHEN ARE TIRED
+STOP WHEN YOU ARE DONE
+DEDICATION
+MOTIVATION
+NO PAIN NO GAIN
+THE FITTER YOU ARE THE BETTER YOU FEEL
+GO HARD OR GO HOME
+BURN FAT - GET FIT - FEEL GREAT
+DON'T BE UPSET BY THE RESULTS YOU DIDN'T GET FROM THE WORKOUT YOU DIDN'T DO
+SUCCESS TRAINS - FAILURE COMPLAINS
+NEVER GIVE UP
+NO EXCUSES
+TODAY IS A GOOD DAY TO WORKOUT
+YOU CAN DO IT!
+```
+
 ## 👀 Want to learn more about Astro?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
