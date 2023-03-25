@@ -9,7 +9,7 @@
 
 'use strict';
 
-(function ($) {
+function bootstrapper($) {
 
     /*------------------
         Preloader
@@ -57,8 +57,8 @@
     });
 
     /*------------------
-		Navigation
-	--------------------*/
+        Navigation
+    --------------------*/
     $(".mobile-menu").slicknav({
         prependTo: '#mobile-menu-wrap',
         allowParentLinks: true
@@ -170,5 +170,16 @@
             }
         });
     });
+}
 
-})(jQuery);
+const tryNow = () => {
+    if (jQuery && jQuery().masonry && jQuery.magnificPopup && jQuery().owlCarousel) {
+        bootstrapper(jQuery)
+    }
+    else {
+        console.log('setTimeout', !!jQuery, !!jQuery.masonry, !!jQuery.magnificPopup, !!jQuery.owlCarousel);
+        setTimeout(() => tryNow(), 100);
+    }
+}
+
+tryNow()
