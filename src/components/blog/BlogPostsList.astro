@@ -1,0 +1,30 @@
+---
+import BlogCard from "./BlogCard.astro";
+
+export interface Props {
+  posts: any[];
+}
+
+const { posts } = Astro.props;
+---
+
+<section>
+  <ul>
+    {
+      posts.map((post: any) => (
+        <li>
+          <BlogCard post={post} />
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  section ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    padding: max(2rem, 4vw);
+    gap: 2rem;
+  }
+</style>

@@ -1,0 +1,10 @@
+/* @import 'https://unpkg.com/open-props/normalize.min.css'; */
+@import 'https://unpkg.com/open-props';
+
+:root {
+  --accent: hsl(269, 100%, 64%);
+  --accent-gradient: linear-gradient(45deg,
+      var(--accent),
+      #da62c4 30%,
+      white 60%);
+}

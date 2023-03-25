@@ -1,0 +1,98 @@
+---
+export interface Props {
+  post: any;
+}
+
+const { post } = Astro.props;
+
+// console.log(post);
+
+const timeStamp = new Date(post.frontmatter.pubDate).toLocaleDateString(
+  "en-us",
+  {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  }
+);
+---
+
+<a class="card" href={post.url} rel="prefetch">
+  <div>
+    {
+      post.frontmatter.heroImage && (
+        <div class="hero">
+          <img
+            loading="lazy"
+            src={post.frontmatter.heroImage}
+            alt="hero image"
+          />
+        </div>
+      )
+    }
+    <div class="body">
+      <time datetime={post.frontmatter.pubDate}>{timeStamp}</time>
+      <h1 class="title">{post.frontmatter.title}</h1>
+      <div class="read-more">Read More &gt;&gt;</div>
+    </div>
+  </div>
+</a>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    width: 100%;
+    padding-bottom: 4rem;
+    border-radius: 1rem;
+    color: yellow;
+    transition: all 0.2s;
+    border: 2px solid #eee;
+    background-color: rgba(250, 250, 250, 0.5);
+  }
+  .card:hover {
+    transform: scale(1.02);
+    -webkit-box-shadow: 5px 5px 0px 0px #289fed, 10px 10px 0px 0px #5fb8ff,
+      5px 5px 5px 5px rgba(255, 255, 255, 0.5);
+    box-shadow: 5px 5px 0px 0px #289fed, 10px 10px 0px 0px #5fb8ff,
+      5px 5px 5px 5px rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+  }
+  .hero {
+    width: 100%;
+    height: 200px;
+  }
+  img {
+    width: 100%;
+    height: inherit;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 1rem;
+  }
+  .body {
+    padding: 1rem;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  h1 {
+    font-size: max(1.4rem, 0.5vw);
+    padding: 2px;
+  }
+  time {
+    font-size: 0.8rem;
+    color: #c5e8ca;
+  }
+  h1,
+  time {
+    text-align: center;
+  }
+  .read-more {
+    font-family: "Work Sans", sans-serif;
+    font-size: 1rem;
+    text-align: center;
+    color: rgb(224, 149, 64);
+  }
+</style>

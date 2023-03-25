@@ -1,0 +1,33 @@
+---
+import MainLayout from "./MainLayout.astro";
+
+export interface Props {
+  frontmatter: {
+    title: string;
+    description?: string;
+    author?: string;
+    pubDate?: string;
+    heroImage?: string;
+    tags?: string[];
+  };
+}
+
+const {
+  frontmatter: { title, pubDate, heroImage, tags },
+} = Astro.props as Props;
+
+const timeStamp = pubDate
+  ? new Date(pubDate).toLocaleDateString("en-us", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    })
+  : null;
+---
+
+<MainLayout css="blog" title={`Blog | ${title}`} confetti>
+  <!-- ... -->
+</MainLayout>
+
+<style>
+</style>
