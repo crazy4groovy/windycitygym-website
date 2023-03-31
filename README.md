@@ -2,6 +2,16 @@
 
 https://windycitygym.ca
 
+## How to maintain site
+
+1. check out / clone code
+2. `npm install` -- install the javascript library dependencies via npm / NodeJS
+3. `npm run dev` -- run local development server
+4. `npm run build` -- create static site for hosting
+5. `npm start` -- run static site
+
+NOTE: This site uses NodeJS + Astro framework. Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
 ## Web dev resources
 
 https://1linelayouts.glitch.me/

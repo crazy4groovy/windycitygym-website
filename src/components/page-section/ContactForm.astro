@@ -1,0 +1,102 @@
+---
+---
+
+<!-- Contact Section Begin -->
+<section class="contact-section spad" id="contact-us">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="section-title contact-title">
+          <span>Contact Us</span>
+          <h2>GET IN TOUCH</h2>
+        </div>
+        <div class="contact-widget">
+          <div class="cw-text">
+            <i class="fa fa-map-marker"></i>
+            <p>64 4 Ave W #26, Cardston, AB<br />T0K 0K0</p>
+          </div>
+          <div class="cw-text">
+            <i class="fa fa-mobile"></i>
+            <ul>
+              <li>407-555-5555</li>
+              <li>407-555-8866</li>
+            </ul>
+          </div>
+          <div class="cw-text email">
+            <i class="fa fa-envelope"></i>
+            <p>windycitygymcardston@gmail.com</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="leave-comment">
+          <form action="#" class="contact-us">
+            <input type="text" placeholder="First Name" name="firstName" />
+            <input type="text" placeholder="Last Name" name="lastName" />
+            <input type="text" placeholder="Your Email" name="from" />
+            <textarea placeholder="Questions or Comments" name="text"></textarea>
+            <p>* Human Question: Today's Day of Month Is...</p>
+            <input type="number" placeholder="A Number" name="answer" size="4" style="width: 10rem;" />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="map">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1658.3548990138454!2d-113.30246497477633!3d49.19679016541716!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x536f26d7d69bc6e1%3A0x2c367ed8f6bd711!2sWindy%20City%20Gym!5e1!3m2!1sen!2sca!4v1680214058619!5m2!1sen!2sca"
+        height="550"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+<!-- Contact Section End -->
+
+<style>
+  form input:focus, form textarea:focus {
+    border: 2px solid orange !important;
+  }
+</style>
+
+<script>
+  // Find our component DOM on the page.
+  const forms = document.querySelectorAll(
+    "form.contact-us"
+  ) as NodeListOf<HTMLFormElement>;
+
+  // Add event listeners to form submit button.
+  forms.forEach((form) => {
+    form.addEventListener("submit", (evt: any) => {
+      evt.preventDefault();
+      if (!evt.target) return;
+      const data = new FormData(evt.target);
+      const values = Object.fromEntries(data.entries());
+      values.name = [values.firstName, values.lastName].join(" ").trim();
+
+      if (!values.answer) {
+        alert("Human Question required, robot!");
+        return;
+      }
+
+      const sub = form.querySelector("input[type=submit]") as HTMLButtonElement;
+      sub.disabled = true;
+
+      fetch("/api/email", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(values),
+      })
+        .then(() => {
+          sub.value = "Sent!";
+          alert("Email Sent!");
+        })
+        .catch(() => {
+          sub.value = "Error";
+          alert("Error Sending Email -- Please Try Again Later");
+        });
+    });
+  });
+</script>

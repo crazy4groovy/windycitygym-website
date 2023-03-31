@@ -55,8 +55,13 @@ export const post: APIRoute = async function post({ request }) {
     // validate honeypot
     // Challenge question: "Today's Day of Month Is..."
     const { answer } = body;
-    // Note: buffer by +/-1 day to handle diff time zones
-    doSend = Math.abs(new Date().getDate() - Number(answer)) <= 1;
+    // Note: buffer by +/-1 day to handle running in diff time zones
+    const today = new Date();
+    const yesterday = new Date(Date.now() - 1000 * 60 * 60 * 24);
+    const tomorrow = new Date(Date.now() + 1000 * 60 * 60 * 24);
+    doSend = [today, yesterday, tomorrow].some(
+      (d) => d.getDate() === Number(answer)
+    );
     if (!doSend) {
       return makeResponse200(answer);
     }

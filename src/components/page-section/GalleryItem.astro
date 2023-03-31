@@ -1,0 +1,20 @@
+---
+const { isWide, imgSrc } = Astro.props;
+---
+
+<div
+  class={`gs-item set-bg ${isWide ? "grid-wide" : ""}`}
+  data-setbg={imgSrc}
+>
+  <a
+    href={imgSrc}
+    class="thumb-icon image-popup"
+    ><i class="fa fa-picture-o"></i>
+  </a>
+</div>
+
+<style>
+  .gs-item {
+    background-position: center;
+  }
+</style>

@@ -1,46 +1,28 @@
 ---
+import GalleryItem from "./GalleryItem.astro";
 ---
 
 <!-- Gallery Section Begin -->
 <div class="gallery-section">
   <div class="gallery">
     <div class="grid-sizer"></div>
-    <div
-      class="gs-item grid-wide set-bg"
-      data-setbg="img/gallery/gallery-1.jpg"
-    >
-      <a href="img/gallery/gallery-1.jpg" class="thumb-icon image-popup"
-        ><i class="fa fa-picture-o"></i>
-      </a>
-    </div>
-    <div class="gs-item set-bg" data-setbg="img/gallery/gallery-2.jpg">
-      <a href="img/gallery/gallery-2.jpg" class="thumb-icon image-popup"
-        ><i class="fa fa-picture-o"></i>
-      </a>
-    </div>
-    <div class="gs-item set-bg" data-setbg="img/gallery/gallery-3.jpg">
-      <a href="img/gallery/gallery-3.jpg" class="thumb-icon image-popup"
-        ><i class="fa fa-picture-o"></i>
-      </a>
-    </div>
-    <div class="gs-item set-bg" data-setbg="img/gallery/gallery-4.jpg">
-      <a href="img/gallery/gallery-4.jpg" class="thumb-icon image-popup"
-        ><i class="fa fa-picture-o"></i>
-      </a>
-    </div>
-    <div class="gs-item set-bg" data-setbg="img/gallery/gallery-5.jpg">
-      <a href="img/gallery/gallery-5.jpg" class="thumb-icon image-popup"
-        ><i class="fa fa-picture-o"></i>
-      </a>
-    </div>
-    <div
-      class="gs-item grid-wide set-bg"
-      data-setbg="img/gallery/gallery-6.jpg"
-    >
-      <a href="img/gallery/gallery-6.jpg" class="thumb-icon image-popup"
-        ><i class="fa fa-picture-o"></i>
-      </a>
-    </div>
+    <GalleryItem
+      isWide={true}
+      imgSrc="photos/outside_2023-03-25-14-28-48-cleanup.jpg"
+    />
+    <GalleryItem
+      imgSrc="photos/outside_2023-03-25-14-39-32-cleanup-transformed.jpg"
+    />
+    <GalleryItem imgSrc="photos/outside_2023-03-25-14-32-51-cleanup.jpg" />
+    <GalleryItem imgSrc="photos/inside_2023-03-25-21-37-15-cleanup.jpg" />
+    <GalleryItem imgSrc="photos/inside_2023-03-25-14-47-44-cleanup.jpg" />
+    <GalleryItem imgSrc="photos/sign-37-55-082.jpg" />
+    <GalleryItem imgSrc="photos/inside_2023-03-25-14-46-14-cleanup.jpg" />
+    <GalleryItem isWide={true} imgSrc="photos/sign-37-55-031-cleanup.jpg" />
+    <GalleryItem isWide={true} imgSrc="photos/inside_2023-03-25-21-40-54-cleanup.jpg" />
+    <GalleryItem imgSrc="photos/inside_2023-03-25-14-44-11-cleanup.jpg" />
+    <GalleryItem isWide={true} imgSrc="photos/inside_2023-03-24-17-38-35-15-cleanup.jpg" />
+    <GalleryItem imgSrc="photos/inside_2023-03-24-17-38-35-20-cleanup.jpg" />
   </div>
 </div>
 <!-- Gallery Section End -->
