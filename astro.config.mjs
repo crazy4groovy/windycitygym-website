@@ -11,7 +11,5 @@ export default defineConfig({
   site: 'https://mountainbrothers.ca',
   integrations: [mdx(), sitemap(), prefetch()],
   output: 'server',
-  adapter: vercel({
-    analytics: true
-  }),
+  adapter: vercel({ analytics: false }),
 });
