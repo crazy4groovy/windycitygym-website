@@ -27,9 +27,16 @@
             <input type="text" placeholder="First Name" name="firstName" />
             <input type="text" placeholder="Last Name" name="lastName" />
             <input type="text" placeholder="Your Email" name="from" />
-            <textarea placeholder="Questions or Comments" name="text"></textarea>
+            <textarea placeholder="Questions or Comments" name="text"
+            ></textarea>
             <p>* Human Question: Today's Day of Month Is...</p>
-            <input type="number" placeholder="A Number" name="answer" size="4" style="width: 10rem;" />
+            <input
+              type="number"
+              placeholder="A Number"
+              name="answer"
+              size="4"
+              style="width: 10rem;"
+            />
             <button type="submit">Send An Email</button>
           </form>
         </div>
@@ -49,7 +56,8 @@
 <!-- Contact Section End -->
 
 <style>
-  form input:focus, form textarea:focus {
+  form input:focus,
+  form textarea:focus {
     border: 2px solid orange !important;
   }
 </style>
@@ -74,9 +82,6 @@
         return;
       }
 
-      const sub = form.querySelector("input[type=submit]") as HTMLButtonElement;
-      sub.disabled = true;
-
       fetch("/api/email", {
         method: "POST",
         headers: { "content-type": "application/json" },
@@ -90,6 +95,9 @@
           sub.value = "Error";
           alert("Error Sending Email -- Please Try Again Later");
         });
+
+      const sub = form.querySelector("[type=submit]") as HTMLButtonElement;
+      sub.disabled = true;
     });
   });
 </script>
