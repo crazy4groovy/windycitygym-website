@@ -1,4 +1,5 @@
 ---
+const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
 ---
 
 <!-- Contact Section Begin -->
@@ -23,20 +24,12 @@
       </div>
       <div class="col-lg-6">
         <div class="leave-comment">
-          <form action="#" class="contact-us">
-            <input type="text" placeholder="First Name" name="firstName" />
-            <input type="text" placeholder="Last Name" name="lastName" />
-            <input type="text" placeholder="Your Email" name="from" />
-            <textarea placeholder="Questions or Comments" name="text"
-            ></textarea>
-            <p>* Human Question: Today's Day of Month Is...</p>
-            <input
-              type="number"
-              placeholder="A Number"
-              name="answer"
-              size="4"
-              style="width: 10rem;"
-            />
+          <form action="#" class="contact-us" data-access-key={accessKey}>
+            <input type="text" placeholder="First Name" name="firstName" required />
+            <input type="text" placeholder="Last Name" name="lastName" required />
+            <input type="email" placeholder="Your Email" name="email" required />
+            <textarea placeholder="Questions or Comments" name="message" required></textarea>
+            <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
             <button type="submit">Send An Email</button>
           </form>
         </div>
@@ -63,41 +56,48 @@
 </style>
 
 <script>
-  // Find our component DOM on the page.
+  import { submitToWeb3Forms } from "../../lib/web3forms";
+
   const forms = document.querySelectorAll(
     "form.contact-us"
   ) as NodeListOf<HTMLFormElement>;
 
-  // Add event listeners to form submit button.
   forms.forEach((form) => {
-    form.addEventListener("submit", (evt: any) => {
+    form.addEventListener("submit", async (evt: Event) => {
       evt.preventDefault();
-      if (!evt.target) return;
-      const data = new FormData(evt.target);
-      const values = Object.fromEntries(data.entries());
-      values.name = [values.firstName, values.lastName].join(" ").trim();
+      const sub = form.querySelector("[type=submit]") as HTMLButtonElement;
+      const accessKey = form.dataset.accessKey;
+      sub.disabled = true;
+      sub.textContent = "Sending...";
 
-      if (!values.answer) {
-        alert("Human Question required, robot!");
-        return;
+      const data = new FormData(form);
+      const values = Object.fromEntries(data.entries()) as Record<string, string>;
+      const name = [values.firstName, values.lastName].join(" ").trim();
+
+      const payload: Record<string, string> = {
+        name,
+        email: values.email,
+        message: values.message,
+        subject: "New contact — Windy City Gym website",
+        from_name: name,
+        botcheck: values.botcheck || "",
+      };
+
+      const result = await submitToWeb3Forms(payload, accessKey);
+
+      if (result.success) {
+        sub.textContent = "Sent!";
+        alert("Email Sent!");
+        form.reset();
+      } else {
+        sub.textContent = "Error";
+        alert(result.message || "Error Sending Email — Please Try Again Later");
       }
 
-      fetch("/api/email", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(values),
-      })
-        .then(() => {
-          sub.value = "Sent!";
-          alert("Email Sent!");
-        })
-        .catch(() => {
-          sub.value = "Error";
-          alert("Error Sending Email -- Please Try Again Later");
-        });
-
-      const sub = form.querySelector("[type=submit]") as HTMLButtonElement;
-      sub.disabled = true;
+      setTimeout(() => {
+        sub.disabled = false;
+        sub.textContent = "Send An Email";
+      }, 4000);
     });
   });
 </script>
